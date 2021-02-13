@@ -46,7 +46,7 @@ def train(x_train, x_test, k):
 
 
 def main(file, k, U):
-    df = pd.read_csv('Data4A1.tsv', sep='\t', header=0)
+    df = pd.read_csv('Data4A1_NoDup.tsv', sep='\t', header=0)
     x = df.drop(['Sequence.id'], axis=1)
     y = df['Class']
     x_train, x_test, _, _ = train_test_split(x, y, test_size=int(U)/len(df), shuffle=True)
@@ -60,11 +60,11 @@ if __name__ == "__main__":
     if len(sys.argv) == 4:
         main(sys.argv[1], sys.argv[2], sys.argv[3])
     else:
-        main('Data4A1.tsv', 5, 50)
+        main('Data4A1_NoDup.tsv', 5, 50)
 
     # generate data for bonus
     if BONUS == True:
-        df = pd.read_csv('Data4A1.tsv', sep='\t', header=0)
+        df = pd.read_csv('Data4A1_NoDup.tsv', sep='\t', header=0)
         x = df.drop(['Sequence.id'], axis=1)
         y = df['Class']
         
@@ -78,4 +78,5 @@ if __name__ == "__main__":
                 avg += train(x_train, x_test, k)
             
             print(f'{k}\t{avg/10}%')
-            results[k] = avg/10 
+            results[k] = avg/10
+
